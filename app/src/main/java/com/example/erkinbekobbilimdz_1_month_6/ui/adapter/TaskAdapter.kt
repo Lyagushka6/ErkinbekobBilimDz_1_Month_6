@@ -19,6 +19,9 @@ class TaskAdapter(private var onLongClick:(Task) -> Unit): RecyclerView.Adapter<
         taskList.addAll(tasks)
         notifyDataSetChanged()
     }
+    fun getPosition(task: Task): Int {
+        return taskList.indexOf(task)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -41,7 +44,7 @@ class TaskAdapter(private var onLongClick:(Task) -> Unit): RecyclerView.Adapter<
                 }
                 binding.root.setOnLongClickListener {
                     onLongClick(task)
-                    false
+                    true
                 }
              }
         }

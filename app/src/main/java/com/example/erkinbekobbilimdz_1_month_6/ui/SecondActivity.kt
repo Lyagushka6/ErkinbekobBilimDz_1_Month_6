@@ -22,12 +22,15 @@ class SecondActivity : AppCompatActivity() {
             val title = binding.etTask.text.toString()
             if (title.isNotEmpty()) {
                 val intent = Intent()
-                intent.putExtra("KEY_TASK", title)
+                intent.putExtra(KEY_TASK, title)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             } else {
                 binding.etTask.error = "Заполняйте >:("
             }
         }
+    }
+    companion object{
+        const val KEY_TASK = "key_task"
     }
 }

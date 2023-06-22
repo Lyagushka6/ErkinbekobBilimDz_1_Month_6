@@ -19,8 +19,10 @@ class TaskViewModel: ViewModel() {
     }
 
     fun removeTask(position: Int){
-        val tasks = taskList.value?.toMutableList()
-        tasks?.removeAt(position)
-        taskList.value = tasks
+        val currentList = taskList.value?.toMutableList()
+        if (position >= 0 && position < (currentList?.size ?: 0)) {
+            currentList?.removeAt(position)
+            taskList.value = currentList
+        }
     }
 }

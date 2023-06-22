@@ -13,9 +13,4 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
-    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
-        <item name="colorAccent">@color/gray</item>
-        <item name="android:textColorSecondary">@color/gray</item>
-    </style>
 </resources>
