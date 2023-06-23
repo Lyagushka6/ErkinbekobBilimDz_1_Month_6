@@ -10,8 +10,8 @@ class TaskAdapter(private var onLongClick:(Task) -> Unit): RecyclerView.Adapter<
     private val taskList: ArrayList<Task> = arrayListOf()
 
     fun addTask(task: Task){
-        taskList.add(0,task)
-        notifyItemChanged(0)
+        taskList.add(task)
+        notifyDataSetChanged()
     }
 
     fun addListTasks(tasks: List<Task>) {
@@ -44,7 +44,7 @@ class TaskAdapter(private var onLongClick:(Task) -> Unit): RecyclerView.Adapter<
                 }
                 binding.root.setOnLongClickListener {
                     onLongClick(task)
-                    true
+                    false
                 }
              }
         }

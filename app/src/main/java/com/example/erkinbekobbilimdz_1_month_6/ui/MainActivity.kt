@@ -28,22 +28,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
-        adapter = TaskAdapter(::onLongClick)
+        adapter = TaskAdapter(this::onLongClick)
 
+        configureRecyclerView()
+        observeTasks()
+        configureAddButton()
+        configureResultLauncher()
+    }
+
+    private fun configureRecyclerView() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = this@MainActivity.adapter
         }
+    }
 
+    private fun observeTasks() {
         viewModel.taskList.observe(this) { taskList ->
             if (taskList != null) {
                 adapter.addListTasks(taskList)
             }
-            binding.btnAdd.setOnClickListener {
-                openAddTaskActivity()
-            }
         }
+    }
 
+    private fun configureAddButton() {
+        binding.btnAdd.setOnClickListener {
+            openAddTaskActivity()
+        }
+    }
+
+    private fun configureResultLauncher() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
